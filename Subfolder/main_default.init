@@ -1,0 +1,37 @@
+[Calibration and Integration]
+Importdir = None
+# Importdir toggles whether or not Cal and Int should be ran
+
+Outputdir = None
+Stemname = None
+Calibrationconfig = None
+Mask = None
+Points = 2048
+CorrectSolidAngle = False
+Unit = q_A^-1
+
+
+[Data Reduction]
+Datadir = None
+# Data reduction is done if != None.
+# If Importdir is defined datadir is set to Importdir
+
+Bgdir = None
+# If Datadir is define and Bgdir is None then the program will only do correlation fitting 
+
+Bgname = None
+# Stemname for bg files
+
+Subtract = 0
+
+[PDFgetX3]
+dataformat  = QA
+outputtypes = iq, sq, fq, gr
+composition = H2 O
+qmaxinst    = 25
+qmin        = 0.7
+qmax        = 20.0
+rmin        = 0.0
+rmax        = 30.0
+rstep       = 0.01
+rpoly       = 0.9

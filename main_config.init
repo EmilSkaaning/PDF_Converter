@@ -1,0 +1,28 @@
+[Calibration and Integration]
+Importdir = /media/emilkjaer/Seagate Expansion Drive/DESY_December/WOPr_200, /media/emilkjaer/Seagate Expansion Drive/DESY_December/PrBkg_200
+# Can take two directories. First will be the data directory and the second will be the directory containing all the background files.
+# The two directories must be seperated by ', '. There is no need to indicate inpute as a string e.g '/directory/folder'.
+# If importdir is None the program will only do Data Reduction.
+
+Outputdir = /home/emilkjaer/DESY-December
+# Outputdir is your project folder, here all data will be sorted
+
+Stemname  = testset
+# Stem name will create a folder in the outputdir where generated files will be stored
+
+Calibrationconfig = Dioptas.poni
+# The calibration file, should be located within the root of this program
+
+Mask = Dioptas.mask
+# The mask file, should be located within the root of this program. 
+# If None no mask will be applied
+
+
+[Data Reduction]
+Datadir = /home/emilkjaer/DESY-December/testset/Integrated
+# The directory of the integrated files 
+# If None Data Reduction will not be done
+# If Importdir is defined Datadir and Bgdir is overulled and is only used a flag
+
+Bgdir = /home/emilkjaer/DESY-December/testset/Integrated_bg
+# The directory of the integrated background files
