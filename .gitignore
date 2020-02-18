@@ -1,0 +1,4 @@
+# Ignored files.
+*.pyc
+*.swp
+.idea/
