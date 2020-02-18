@@ -9,6 +9,7 @@ Mask = None
 Points = 2048
 CorrectSolidAngle = False
 Unit = q_A^-1
+Filetype = tif
 
 
 [Data Reduction]

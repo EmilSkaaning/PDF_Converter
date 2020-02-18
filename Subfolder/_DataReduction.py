@@ -146,28 +146,33 @@ def backgroundSingleAuto(x,y,x_bg,y_bg,qmin,qmax):
 
     scale = 9999
     print('\nCalculating scaling factor:')
-
     for li1, li2 in tqdm(zip(y, y_bg)):
-        diff_index = [] + heapq.nsmallest(len(li1), range(len(li1)), key=lambda i: ((li1[i] - li2[i])/(li1[i]+0.00001)))  # Finds index for largest difference 
-        scale_ph = 9999
+
+        diff_index = [] + heapq.nsmallest(len(li1), range(len(li1)), key=lambda i: ((li1[i] - li2[i])/(li1[i]+0.0000001)))  # Finds index for largest difference
+
         scan_ph = 1  # Search til it finds a value within qmin and qmax
         i       = 0 
         while scan_ph == 1:
 
             if qmin < x[diff_index[i]] and qmax > x[diff_index[i]] and li1[diff_index[i]] != 0:
-                scale_ph = (li1[diff_index[i]] / li2[diff_index[i]]+0.00001) * 0.99  # Scales the background a bit further down
-                scan_ph = 0            
+                scale_ph = (li1[diff_index[i]] / li2[diff_index[i]]) * 0.99  # Scales the background a bit further down
+                scan_ph = 0
             else:
                 i += 1
 
         if scale_ph < scale:
             scale = scale_ph
-        del diff_index[:]
-    
+
+
+    if scale < 0:
+        scale = 0
+        print('\nOne frame contains only zeros.')
+        print('Use auto scate to finde frame or delete last frame and recalculate single-scaling.')
+
     print('\nScaling factor = {:.3f}'.format(scale))
    
     y_diff = np.multiply(y, scale)
-    scale = np.zeros((len(y))) + scale_ph
+    scale = np.zeros((len(y))) + scale
 
     return y_diff, scale
 
@@ -188,14 +193,12 @@ def backgroundMultiAuto(x,y,x_bg,y_bg, qmin, qmax):
         i       = 0 
         while scan_ph == 1:
             if qmin < x[diff_index[i]] and qmax > x[diff_index[i]] and li1[diff_index[i]] != 0:
-                scale = (li1[diff_index[i]] / li2[diff_index[i]]+0.00001) * 0.99  # Scales the background a bit further down
+                scale = (li1[diff_index[i]] / li2[diff_index[i]]) * 0.99  # Scales the background a bit further down
                 scan_ph = 0
             
             i += 1
         scale_list.append(scale)
         count += 1
-        del diff_index[:]
-
 
     y_diff = np.zeros((len(y), len(y[0])))
     scaled_bg = np.zeros((len(y), len(y[0])))
@@ -391,8 +394,7 @@ def datareduction(self):
             pass
         elif self.subtract == 3:
             pass
-    else: 
-        print('_DataReduiction -> datareduction -> 318')
+    else:
         sys.exit()
         pass
         #calcPDF(self, x, y)

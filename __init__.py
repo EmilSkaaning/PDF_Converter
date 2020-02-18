@@ -54,7 +54,6 @@ class initProgram:
 
         self.configFolder('main_config.init')
         print('\nThank you for converting to PDF\n')
-        return None
 
 
     def createCFG(self):
@@ -161,6 +160,7 @@ class initProgram:
         self.points = config.getint('Calibration and Integration', 'Points')  # Number of data points after integration
         self.correctSolidAngle = config.getboolean('Calibration and Integration', 'CorrectSolidAngle')  # Decrease intensity as a function of q if True
         self.units = config.get('Calibration and Integration', 'Unit')  # q_A^-1 or q_nm^-1, q_nm^-1 is not tested yet
+        self.filetype = config.get('Calibration and Integration', 'Filetype')  # Exstension of the data
 
         # [Data Reduction]
         self.datadir = config.get('Data Reduction', 'Datadir')  # Dir for loaded data files.
@@ -218,7 +218,7 @@ class initProgram:
         os.chdir(self.outputdir+'/'+self.stem+'/'+'Integrated')  # Goes to project folder
         
         data = os.listdir(self.importdir)  # Gets all files in folder
-        dataList = [file for file in data if file[-4:] == '.tif']  # Removes everything but tif
+        dataList = [file for file in data if file[-4:].upper() == '.{}'.format(self.filetype.upper())]  # Removes everything but tif
         dataList = [file for file in dataList if 'test' not in file]  # Removes test files
         dataList = [file for file in dataList if 'dark' not in file]  # Removes dark files
         dataList = sorted(dataList)
@@ -233,6 +233,7 @@ class initProgram:
                 res = ai.integrate1d(img, self.points, filename='{}_{:05d}.dat'.format(self.stem,i), 
                                  correctSolidAngle=self.correctSolidAngle, mask=mask, unit=self.units)
             pbar.update(1)
+        pbar.close()
 
         # Integrates background
         if self.importdir_bg != 'None':
@@ -242,7 +243,7 @@ class initProgram:
             os.chdir(self.outputdir+'/'+self.stem+'/'+'Integrated_bg')
 
             data = os.listdir(self.importdir_bg)  # Gets all files in folder
-            dataList = [file for file in data if file[-4:] == '.tif']  # Removes everything but tifs
+            dataList = [file for file in data if file[-4:].upper() == '.{}'.format(self.filetype.upper())]  # Removes everything but tifs
             dataList = [file for file in dataList if 'test' not in file]  # Removes test files
             dataList = [file for file in dataList if 'dark' not in file]  # Removes dark files
             dataList = sorted(dataList)
@@ -262,6 +263,7 @@ class initProgram:
                     res = ai.integrate1d(img, self.points, filename='{}_{:05d}.dat'.format(ph_name,i), 
                                      correctSolidAngle=self.correctSolidAngle, mask=mask, unit=self.units)
                 pbar.update(1)
+        pbar.close()
 
         os.chdir(self.root)  # Goes back to root
 
@@ -288,12 +290,12 @@ def argParse():
     """
 
 
-    parser = argparse.ArgumentParser(prog='NanostructureUCPH')
+    parser = argparse.ArgumentParser(prog='PDF Converter')
     parser.add_argument("-c", "--create", help="Create can take 4 different input or a combination of the 4.\nfit2D, search, cfg or main.")  # Defines new command
     args = parser.parse_args()  # Get commands
     
     if args.create != None:
-
+        print(args.create)
         if 'FIT2D' in args.create.upper():  # Checks if command is defined
             print("Creating .Fit2D calibration file!")
             Fit2D_name    = 'new.fit2D'
@@ -315,6 +317,7 @@ def argParse():
 
         if 'SEARCH' in args.create.upper():  # Checks if command is defined
             print("\nCreating config file for specified database search!")
+            print('Not implemented')
 
         if 'CFG' in args.create.upper():  # Checks if command is defined
             print("\nCreating .cfg file for PDFgetX3!")
@@ -338,6 +341,7 @@ def argParse():
 
         if 'MAIN' in args.create.upper():  # Checks if command is defined
             print("\nCreating main_config.init file!")
+            print('Not implemented')
 
     else:
         obj = initProgram()
