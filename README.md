@@ -1,4 +1,4 @@
-# Pair Distribution Function converter
+# Pair Distribution Function Converter
 ## Introduction
 This code was developed as part of my M.Sc. thesis at the University of Copenhagen and is ment to improve data
 analysis of x-ray data. More specifical to improve data analysis of _in situ_ measurements using the Pair 
@@ -18,7 +18,16 @@ handling these tasks. This flexibility made it the obivois choise.
 The two following sections will provide a simple guide to installing and running the program. 
 A more complete guide for installing, _how to use_ examples and implementation 
 can be found in [PDFconverter_manual.pdf](PDFconverter_manual.pdf).
-## Installing
+
+1. [Installing PDF_Converter](#installing pdf_converter)
+2. [Running the code](#running the code)
+3. [The GUI](#the gui)
+4. [Argparse](#argparse)
+5. [License](#license)
+6. [Author](#author)
+7. [References](#references)
+
+## Installing PDF_Converter
 For running this program i recommend using Python 3.7 but it should be compatible down to Python 3.4. If you do not have 
 Python installed the easiest way is to install [Anaconda](https://www.anaconda.com/distribution/#windows). Remember to 
 add Anaconda to you path when installing it. To verify that python has been installed correctly open your terminal and
@@ -36,27 +45,48 @@ installed using either Anaconda or pip. Unfortunately, the simplest way to insta
 and install the missing package when it gives an error. Examples are shown below.
 ````
 pip install tqdm
-
+or
 conda install tqdm
 ````
 The number of packages needed to run this program depend on how you chose to install Python.
-   
 
-## Running Example
-This program has three core functions: calibration, integration and background subtraction. 
+## Running the code
+This program has three core functions: calibration, integration and background subtraction. It is so far 
+recommended to use Fit2D for calibration.  
+The __main_config.init__ is used to setup the program. To make the program run only three parameters need to be specified,
+*Importdir*, *Outputdir* and *Calibrationconfig*. If nothing else is specified default values will be imported from __main_default.init__.  
+The first parameter that needs to be specific is *Importdir*.
+````
+Importdir = /Home/Folder/Data, /Home/Folder/Background
+or
+Importdir = /Home/Folder/Data
+````
+All '.tif' files within these two directories will be imported. The first specified directory is data of interest while 
+the second is background data. It is not necesary to specify a background directory, hence no background will be subtracted
+from the data.    
+The second parameters is the *Outputdir*.
+````angular2
+Outputdir = /Home/Folder
+```` 
+This is the directory where the __project folder__ will be created. The __project folder__ will be named after 
+the parameter _Stemname_ and is where all generated data and used configurations are saved.   
+The calibration and mask file is specified through the parameters _Calibrationconfig_ and _Mask_.  
+The 
 
-![GUI example](./img/gui.png )
-Center-aligned
-{: .text-center}
+
+## The GUI
+
+![GUI example](./img/gui.png)
+
+## Argparse
+
 
 ## Author
-* __Emil T. K. Kjær__, PhD student in Nanoscience at the University of Copenhagen   
+* __Emil T. S. Kjær__, PhD student in Nanoscience at the University of Copenhagen   
 * suporvisor __Kirsten M. Ø. Jensen__, associate professor at the University og Copenhagen.  
  
 Should there be any question, desired improvement or bugs please contact me on GitHub or 
 through my email __etsk@chem.ku.dk__.
-
-
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

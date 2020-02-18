@@ -54,7 +54,6 @@ class initProgram:
 
         self.configFolder('main_config.init')
         print('\nThank you for converting to PDF\n')
-        return None
 
 
     def createCFG(self):
@@ -85,7 +84,7 @@ class initProgram:
 
     def overwriteCFG(self,obj):
         # [PDFgetX3]
-        print("\nOverwriting .cfg file!")
+            print("\nOverwriting .cfg file!")
         cfg_name    = '{}.cfg'.format(self.stem)
         dataformat  = obj.cfg.dataformat
         outputtypes = 'iq, sq, fq, gr'
@@ -233,6 +232,7 @@ class initProgram:
                 res = ai.integrate1d(img, self.points, filename='{}_{:05d}.dat'.format(self.stem,i), 
                                  correctSolidAngle=self.correctSolidAngle, mask=mask, unit=self.units)
             pbar.update(1)
+        pbar.close()
 
         # Integrates background
         if self.importdir_bg != 'None':
@@ -262,6 +262,7 @@ class initProgram:
                     res = ai.integrate1d(img, self.points, filename='{}_{:05d}.dat'.format(ph_name,i), 
                                      correctSolidAngle=self.correctSolidAngle, mask=mask, unit=self.units)
                 pbar.update(1)
+        pbar.close()
 
         os.chdir(self.root)  # Goes back to root
 
