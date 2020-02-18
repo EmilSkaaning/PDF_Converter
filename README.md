@@ -45,7 +45,8 @@ The number of packages needed to run this program depend on how you chose to ins
 ## Running Example
 This program has three core functions: calibration, integration and background subtraction. 
 
-[![Example of GUI](./img/GUI.png "Hello World")*My caption*]
+![Example of GUI](./img/GUI.png "Hello World")
+*My caption*
 
 
 ## Author
