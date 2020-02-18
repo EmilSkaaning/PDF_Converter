@@ -6,7 +6,7 @@ Distribution Function (PDF).
 This simple program is ment to easy the workload of preprocessing the data before modelling is preformed and to
 help the user keep track of all used parameters. This framework is build using:
  
-* [PyFAI](https://pyfai.readthedocs.io/en/latest/)<sup>[1](##References)</sup>
+* [PyFAI](https://pyfai.readthedocs.io/en/latest/)<sup>[1](#references)</sup>
 * [PDfgetX3](https://www.diffpy.org/products/pdfgetx.html)
 
 PyFAI is mainly used for integration, since there are several good calibration and masking tools such as 
@@ -31,6 +31,9 @@ Should there be any question, desired improvement or bugs please contact me.
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## References 
+
+
+
 
 
 
