@@ -21,7 +21,7 @@ A more complete guide for installing, how to use examples and implementation
 can be found in [PDFconverter_manual.pdf](PDFconverter_manual.pdf).  
 The __README.md__ file consist of the following sections:
 
-1. [Installing PDF_Converter](#Installing-pdf-converter)
+1. [Installing PDF Converter](#Installing-pdf-converter)
 2. [Running the code](#running-the-code)
 3. [The GUI](#the-gui)
 4. [Argparse](#argparse)
@@ -29,7 +29,7 @@ The __README.md__ file consist of the following sections:
 6. [Author](#author)
 7. [References](#references)
 
-## Installing PDF_Converter
+## Installing PDF Converter
 For running this program i recommend using Python 3.7 but it is compatible down to Python 3.4. If you do not have 
 Python installed the easiest way is to install [Anaconda](https://www.anaconda.com/distribution/#windows). Remember to 
 add Anaconda to you path when installing it. To verify that python has been installed correctly after installing Anaconda
@@ -117,9 +117,10 @@ Possible arguments for PDF Converter.
 | --- | --- |
 | `-h` or `--help` | Prints help message. |
 | `-c` or `--create` | Create can take 2 different inputs or a combination of them. <br/> `fit2D` or `cfg` |
+
 The create argument can create two types of files, either a cfg file or a fit2d calibration file. A '.cfg' file is needed 
 for PDFgetX3 to specify required parameters for calculating the PDFs. The `fit2D` is a file where calibration configurations
-from Fit2D can be store for future calibration.  
+from Fit2D can be store for future calibration.
 ````angular2
 python __init__.py --create fit2d
 >>> Creating .Fit2D calibration file!
