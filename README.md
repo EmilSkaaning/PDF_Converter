@@ -4,20 +4,22 @@ This code was developed as part of my M.Sc. thesis at the University of Copenhag
 analysis of x-ray data. More specifical to improve data analysis of _in situ_ measurements using the Pair 
 Distribution Function (PDF).   
 This simple program is ment to easy the workload of preprocessing the data before modelling is preformed and to
-help the user keep track of all used parameters. This framework is build using:
+help the user keep track of all used parameters making data reproduceable.   
+This framework is build using the following two packages:
  
 * [PyFAI](https://pyfai.readthedocs.io/en/latest/)<sup>[1](#references)</sup>
 * [PDfgetX3](https://www.diffpy.org/products/pdfgetx.html)<sup>[2](#references)</sup>
 
-Calibration and integration is implemented using PyFAI. Since what program to use for these tasks are 
+Calibration and integration is implemented using PyFAI. What program to use for these tasks are 
 an almost religous question, PyFAI was chosen as it supports the most used ones:  
 [Fit2D](http://www.esrf.eu/computing/scientific/FIT2D/)<sup>[3](#references)</sup> and 
 [Dioptas](http://www.clemensprescher.com/programs/dioptas)<sup>[4](#references)</sup>. 
 PyFAI can load both calibration and mask files from either of those programs while still having its own framework for
 handling these tasks. This flexibility made it the obivois choise.     
 The two following sections will provide a simple guide to installing and running the program. 
-A more complete guide for installing, _how to use_ examples and implementation 
-can be found in [PDFconverter_manual.pdf](PDFconverter_manual.pdf).
+A more complete guide for installing, how to use examples and implementation 
+can be found in [PDFconverter_manual.pdf](PDFconverter_manual.pdf).  
+The __README.md__ file consist of the following sections:
 
 1. [Installing PDF_Converter](#Installing-pdf-converter)
 2. [Running the code](#running-the-code)
@@ -28,33 +30,36 @@ can be found in [PDFconverter_manual.pdf](PDFconverter_manual.pdf).
 7. [References](#references)
 
 ## Installing PDF_Converter
-For running this program i recommend using Python 3.7 but it should be compatible down to Python 3.4. If you do not have 
+For running this program i recommend using Python 3.7 but it is compatible down to Python 3.4. If you do not have 
 Python installed the easiest way is to install [Anaconda](https://www.anaconda.com/distribution/#windows). Remember to 
-add Anaconda to you path when installing it. To verify that python has been installed correctly open your terminal and
-type _python --version_, if this does not produce an error then you have installed Python correctly! An example is 
-shown below
+add Anaconda to you path when installing it. To verify that python has been installed correctly after installing Anaconda
+open your terminal and type _python --version_, if this does not produce an error then you have you
+have installed Python correctly!
 ```
 python --version
 >>> Python 3.7.4
 ```
-The "hardest" packages to install for this program to work are PyFAI and PDFgetX3. I recommend reading their following 
+The "hardest" packages to install for this program is functional are PyFAI and PDFgetX3. I recommend reading their  
 installation guides, for getting help installing PyFAI [press here](https://pyfai.readthedocs.io/en/latest/operations/index.html#detailed-installation-procedure-on-different-operating-system)
-and for PDFgetX3 [press here](https://www.diffpy.org/doc/pdfgetx/2.0.0/install.html). Remember to chose to right operating system!
+and for PDFgetX3 [press here](https://www.diffpy.org/doc/pdfgetx/2.0.0/install.html). Remember to chose the right operating system!
 When these packages are correctly installed then you are practically done, all of the remining packages can simply be
 installed using either Anaconda or pip. Unfortunately, the simplest way to install all packages is to run the program
-and install the missing package when it gives an error. Examples are shown below.
+and install the missing packages when it gives an error. Examples on how to install are shown below.
 ````
 pip install tqdm
 or
 conda install tqdm
 ````
-The number of packages needed to run this program depend on how you chose to install Python.
+The number of packages needed to run this program depend on how you chose to install Python. If you chose Anaconda
+then you should only have to install 2-3 additional packages.
 
 ## Running the code
 This program has three core functions: calibration, integration and background subtraction. It is so far 
 recommended to use Fit2D for calibration.  
 The __main_config.init__ is used to setup the program. To make the program run only three parameters need to be specified,
-*Importdir*, *Outputdir* and *Calibrationconfig*. If nothing else is specified default values will be imported from __main_default.init__.  
+*Importdir*, *Outputdir* and *Calibrationconfig*. If nothing else is specified default values will be imported from __main_default.init__. 
+To ignore/use dedault values within the progrem either use '#' to outcomment the parameter, set it to None or simply delete it
+from __main_config.init__.  
 The first parameter that needs to be specific is *Importdir*.
 ````
 Importdir = /Home/Folder/Data, /Home/Folder/Background

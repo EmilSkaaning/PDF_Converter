@@ -84,7 +84,7 @@ class initProgram:
 
     def overwriteCFG(self,obj):
         # [PDFgetX3]
-            print("\nOverwriting .cfg file!")
+        print("\nOverwriting .cfg file!")
         cfg_name    = '{}.cfg'.format(self.stem)
         dataformat  = obj.cfg.dataformat
         outputtypes = 'iq, sq, fq, gr'
@@ -160,6 +160,7 @@ class initProgram:
         self.points = config.getint('Calibration and Integration', 'Points')  # Number of data points after integration
         self.correctSolidAngle = config.getboolean('Calibration and Integration', 'CorrectSolidAngle')  # Decrease intensity as a function of q if True
         self.units = config.get('Calibration and Integration', 'Unit')  # q_A^-1 or q_nm^-1, q_nm^-1 is not tested yet
+        self.filetype = config.get('Calibration and Integration', 'Filetype')  # Exstension of the data
 
         # [Data Reduction]
         self.datadir = config.get('Data Reduction', 'Datadir')  # Dir for loaded data files.
@@ -217,7 +218,7 @@ class initProgram:
         os.chdir(self.outputdir+'/'+self.stem+'/'+'Integrated')  # Goes to project folder
         
         data = os.listdir(self.importdir)  # Gets all files in folder
-        dataList = [file for file in data if file[-4:] == '.tif']  # Removes everything but tif
+        dataList = [file for file in data if file[-4:].upper() == '.{}'.format(self.filetype.upper())]  # Removes everything but tif
         dataList = [file for file in dataList if 'test' not in file]  # Removes test files
         dataList = [file for file in dataList if 'dark' not in file]  # Removes dark files
         dataList = sorted(dataList)
@@ -242,7 +243,7 @@ class initProgram:
             os.chdir(self.outputdir+'/'+self.stem+'/'+'Integrated_bg')
 
             data = os.listdir(self.importdir_bg)  # Gets all files in folder
-            dataList = [file for file in data if file[-4:] == '.tif']  # Removes everything but tifs
+            dataList = [file for file in data if file[-4:].upper() == '.{}'.format(self.filetype.upper())]  # Removes everything but tifs
             dataList = [file for file in dataList if 'test' not in file]  # Removes test files
             dataList = [file for file in dataList if 'dark' not in file]  # Removes dark files
             dataList = sorted(dataList)
