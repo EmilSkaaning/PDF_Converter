@@ -19,9 +19,9 @@ The two following sections will provide a simple guide to installing and running
 A more complete guide for installing, _how to use_ examples and implementation 
 can be found in [PDFconverter_manual.pdf](PDFconverter_manual.pdf).
 
-1. [Installing PDF_Converter](#Installing_PDF_Converter)
-2. [Running the code](#Running_the_code)
-3. [The GUI](#the_GUI)
+1. [Installing PDF_Converter](#Installing-pdf-converter)
+2. [Running the code](#running-the-code)
+3. [The GUI](#the-gui)
 4. [Argparse](#argparse)
 5. [License](#license)
 6. [Author](#author)
