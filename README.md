@@ -45,9 +45,9 @@ The number of packages needed to run this program depend on how you chose to ins
 ## Running Example
 This program has three core functions: calibration, integration and background subtraction. 
 
-![Example of GUI](./img/GUI.png "Hello World")
-*My caption*
-
+![GUI example](./img/gui.png )
+Center-aligned
+{: .text-center}
 
 ## Author
 * __Emil T. K. Kjær__, PhD student in Nanoscience at the University of Copenhagen   
