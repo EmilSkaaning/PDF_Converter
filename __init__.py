@@ -290,12 +290,12 @@ def argParse():
     """
 
 
-    parser = argparse.ArgumentParser(prog='NanostructureUCPH')
+    parser = argparse.ArgumentParser(prog='PDF Converter')
     parser.add_argument("-c", "--create", help="Create can take 4 different input or a combination of the 4.\nfit2D, search, cfg or main.")  # Defines new command
     args = parser.parse_args()  # Get commands
     
     if args.create != None:
-
+        print(args.create)
         if 'FIT2D' in args.create.upper():  # Checks if command is defined
             print("Creating .Fit2D calibration file!")
             Fit2D_name    = 'new.fit2D'
@@ -317,6 +317,7 @@ def argParse():
 
         if 'SEARCH' in args.create.upper():  # Checks if command is defined
             print("\nCreating config file for specified database search!")
+            print('Not implemented')
 
         if 'CFG' in args.create.upper():  # Checks if command is defined
             print("\nCreating .cfg file for PDFgetX3!")
@@ -340,6 +341,7 @@ def argParse():
 
         if 'MAIN' in args.create.upper():  # Checks if command is defined
             print("\nCreating main_config.init file!")
+            print('Not implemented')
 
     else:
         obj = initProgram()

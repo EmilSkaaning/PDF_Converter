@@ -80,12 +80,50 @@ The
 
 
 ## The GUI
+To get a better overview of how background subtraction and change in parameters affect the PDFs a simply GUI was implemented.
+The GUI consist of 4 different plots, different possiblities for automated background subtraction and easy access to 
+the parameters needed for the Fourier Transformation. 
 
 ![GUI example](./img/gui.png)
 
+On the left side of the GUI 4 different plots are present and the header shows the current plotted data set and its 
+scaling factor. From the top and down I(q), F(q), G(r) and scaling factors as a function of time. By hovering the scaling
+plot the 3 top graphs will change to corresponding I(q), F(q) and G(r). E.g. This gives the possibility of deciding the best 
+Q<sub>max</sub> and to remove unique atom-atom distances from the PDF through the background subtraction.  
+The __method box__ is an automatic way of calculating the scaling factor/factors for a large dataset. The different 
+methods are explained in the table below. When a method is chosen and __Recalculating scaling__ is pressed, then the
+program will calculate the highest possible scaling factor/factors within within the range of Q<sub>min</sub> 
+and Q<sub>max</sub>.  
+ 
+| Method | Description |
+| :---: | --- |
+| __1__ | One scaling factor is calculated |
+| __2__ | A scaling factor for each dataframe is calculated. |
+| __3__ | Not implemented, room for improvement. |
+| __4__ | Not implemented, room for improvement. |
+
+All scaling factors can be altered by the __relative scale__, either by giving a float or changing the scale bar. 
+The chance is comittedby pressing the __Calculate__ button. Furthermore, specific time areas of the data set can be
+adjust by using the __First__ and __Last__ box and then pressing __Choose frames__. This will marc an area on the 
+4<sup>th</sup> plot indicating which frames will have their scaling factors changed by the next __Calculate__. Scaling
+factors can also be set to absolute values by using the __Scale__ field and then pressing __Calculate__. To remove
+miss selected frames the __Clear__ button can be pressed.  
+  
+
 ## Argparse
+Possible arguments for PDF Converter.
 
-
+| Arg | Description |
+| --- | --- |
+| `-h` or `--help` | Prints help message. |
+| `-c` or `--create` | Create can take 2 different inputs or a combination of them. <br/> `fit2D` or `cfg` |
+The create argument can create two types of files, either a cfg file or a fit2d calibration file. A '.cfg' file is needed 
+for PDFgetX3 to specify required parameters for calculating the PDFs. The `fit2D` is a file where calibration configurations
+from Fit2D can be store for future calibration.  
+````angular2
+python __init__.py --create fit2d
+>>> Creating .Fit2D calibration file!
+````
 ## Author
 * __Emil T. S. Kjær__, PhD student in Nanoscience at the University of Copenhagen   
 * suporvisor __Kirsten M. Ø. Jensen__, associate professor at the University og Copenhagen.  

@@ -1,5 +1,6 @@
 [Calibration and Integration]
-Importdir = /Home/Folder/Data, /Home/Folder/Background
+
+Importdir = /Home/Folder/Data_folder, /Home/Folder/Background_folder
 # Can take two directories. First will be the data directory and the second will be the directory containing all the background files.
 # The two directories must be seperated by ', '. There is no need to indicate inpute as a string e.g '/directory/folder'.
 # If importdir is None the program will only do Data Reduction.

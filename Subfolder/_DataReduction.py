@@ -394,8 +394,7 @@ def datareduction(self):
             pass
         elif self.subtract == 3:
             pass
-    else: 
-        print('_DataReduiction -> datareduction -> 318')
+    else:
         sys.exit()
         pass
         #calcPDF(self, x, y)
